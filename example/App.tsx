@@ -1,5 +1,5 @@
 import { useCallback, useRef, useState } from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View, Button, ScrollView, SafeAreaView } from 'react-native';
 
 import * as RnYandexAds from 'rn-yandex-ads';
 
@@ -23,53 +23,65 @@ export default function App() {
     }
   }, [initialized])
 
+  const onSetUserConsent = useCallback(() => { RnYandexAds.setUserConsent(true) }, [])
+  const onLocationTracking = useCallback(() => { RnYandexAds.setLocationTrackingEnabled(true) }, [])
+
   const ref = useRef<RnYandexAds.RnYandexAdsViewRef>(null);
 
   return (
-    <View style={styles.container}>
-      {initialized && (
-        <>
-          <RnYandexAds.RnYandexAdsView
-            adUnitId='demo-banner-yandex'
-            width={320}
-            maxHeight={320}
-            ref={ref}
-            onAdViewDidLoad={() => setBannerState(state => ({...state, onAdViewDidLoad: true }))}
-            onAdViewDidClick={() => setBannerState(state => ({...state, onAdViewDidClick: true }))}
-            onAdView={() => setBannerState(state => ({...state, onAdView: true }))}
-            onAdViewDidFailLoading={() => setBannerState(state => ({...state, onAdViewDidFailLoading: true }))}
-            onAdViewWillLeaveApplication={() => setBannerState(state => ({...state, onAdViewWillLeaveApplication: true }))}
-          />
+    <SafeAreaView style={styles.safeArea}>
+      <ScrollView style={styles.scrollView} contentContainerStyle={styles.container}>
+        {initialized && (
+          <>
+            <RnYandexAds.RnYandexAdsView
+              adUnitId='demo-banner-yandex'
+              width={320}
+              maxHeight={320}
+              ref={ref}
+              onAdViewDidLoad={() => setBannerState(state => ({ ...state, onAdViewDidLoad: true }))}
+              onAdViewDidClick={() => setBannerState(state => ({ ...state, onAdViewDidClick: true }))}
+              onAdView={() => setBannerState(state => ({ ...state, onAdView: true }))}
+              onAdViewDidFailLoading={() => setBannerState(state => ({ ...state, onAdViewDidFailLoading: true }))}
+              onAdViewWillLeaveApplication={() => setBannerState(state => ({ ...state, onAdViewWillLeaveApplication: true }))}
+            />
 
-          {bannerState && (
-            <Text>{JSON.stringify(bannerState, null, "\n")}</Text>
-          )}
-        </>
-      )}
+            {bannerState && (
+              <Text>{JSON.stringify(bannerState, null, " ")}</Text>
+            )}
+          </>
+        )}
 
-      <Button title='Initialize And Show Banner' onPress={onPress} />
+        <Button title='Initialize And Show Banner' onPress={onPress} />
 
-      {initialized && (
-        <>
-          <Button title='Show interstital' onPress={onShow} />
-          {interstitalResponse && (
-            <View>
-              <Text>CLICKED: {String(interstitalResponse.didClick)}{"\n"}</Text>
-              <Text>TRACKED: {String(interstitalResponse.trackImpression)}</Text>
-            </View>
-          )}
-        </>
-      )}
-    </View>
+        {initialized && (
+          <>
+            <Button title='Show interstital' onPress={onShow} />
+            {interstitalResponse && (
+              <Text>{JSON.stringify(interstitalResponse, null, " ")}</Text>
+            )}
+          </>
+        )}
+
+
+        <Button title='Set UserConsent' onPress={onSetUserConsent} />
+        <Button title='Set LocationTracking' onPress={onLocationTracking} />
+
+        <Text>{RnYandexAds.SDKVersion}</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
+  },
+  scrollView: {
     backgroundColor: '#fff',
+  },
+  container: {
     alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#fff',
     rowGap: 20
   },
 });

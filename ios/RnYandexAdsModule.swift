@@ -8,7 +8,7 @@ public class RnYandexAdsModule: Module {
     public func definition() -> ModuleDefinition {
         Name("RnYandexAds")
         
-        AsyncFunction("initialize") { (options: InitializeOptions, promise: Promise) in
+        AsyncFunction("initialize") { (options: InitializationOptions, promise: Promise) in
             if (options.enableLogging) {
                 YMAMobileAds.enableLogging();
             }
@@ -28,6 +28,19 @@ public class RnYandexAdsModule: Module {
                     promise.resolve("[RnYandexAdsModule] initialized \(options)")
                 })
             }
+        }
+        
+        Property("SDKVersion")
+            .get({ return YMAMobileAds.sdkVersion() })
+
+        Function("setUserConsent") { (state: Bool) in
+            YMAMobileAds.setUserConsent(state)
+            print("UserConsent: \(state)")
+        }
+        
+        Function("setLocationTrackingEnabled") { (state: Bool) in
+            YMAMobileAds.setLocationTrackingEnabled(state)
+            print("LocationTrackingEnabled: \(state)")
         }
         
         AsyncFunction("showInterstitial") { (adUnitId: String, promise: Promise) in

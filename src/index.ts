@@ -5,6 +5,8 @@ import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-cor
 import RnYandexAdsModule from './RnYandexAdsModule';
 import RnYandexAdsView, { RnYandexAdsViewRef } from './RnYandexAdsView';
 
+export const SDKVersion = RnYandexAdsModule.SDKVersion
+
 export async function initialize(options: {
   userConsent?: boolean,
   locationConsent?: boolean,
@@ -12,6 +14,14 @@ export async function initialize(options: {
   enableDebugErrorIndicator?: boolean,
 }) : Promise<string> {
   return await RnYandexAdsModule.initialize(options);
+}
+
+export function setUserConsent(state: boolean) {
+  RnYandexAdsModule.setUserConsent(state)
+}
+
+export function setLocationTrackingEnabled(state: boolean) {
+  RnYandexAdsModule.setLocationTrackingEnabled(state)
 }
 
 export async function showInterstitial(adUnitId: string) {

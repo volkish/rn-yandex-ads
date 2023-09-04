@@ -8,7 +8,7 @@
 import Foundation
 import ExpoModulesCore
 
-struct InitializeOptions: Record {
+struct InitializationOptions: Record {
     @Field
     var userConsent: Bool = false
     
@@ -22,7 +22,7 @@ struct InitializeOptions: Record {
     var enableDebugErrorIndicator: Bool = false
 }
 
-extension InitializeOptions: CustomStringConvertible {
+extension InitializationOptions: CustomStringConvertible {
     var description: String {
         return "(userConsent: \(userConsent), locationConsent: \(locationConsent), enableLogging: \(enableLogging), enableDebugErrorIndicator: \(enableDebugErrorIndicator))"
     }
