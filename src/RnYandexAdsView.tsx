@@ -1,11 +1,20 @@
 import { requireNativeViewManager } from 'expo-modules-core';
 import * as React from 'react';
 
-import { RnYandexAdsViewProps } from './RnYandexAds.types';
+import type { RnYandexAdsViewRef, RnYandexAdsViewProps } from './RnYandexAds.types';
 
-const NativeView: React.ComponentType<RnYandexAdsViewProps> =
-  requireNativeViewManager('RnYandexAds');
+const NativeView = requireNativeViewManager('RnYandexAds');
 
-export default function RnYandexAdsView(props: RnYandexAdsViewProps) {
-  return <NativeView {...props} />;
-}
+export { RnYandexAdsViewRef }
+export default React.forwardRef(function (props: RnYandexAdsViewProps, ref?: React.ForwardedRef<RnYandexAdsViewRef>) {
+  return <NativeView
+    ref={ref}
+    style={{
+      background: '#ccc',
+      width: props.width,
+      height: props.maxHeight
+    }}
+
+    {...props}
+  />;
+})

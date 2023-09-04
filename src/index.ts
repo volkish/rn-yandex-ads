@@ -3,24 +3,19 @@ import { NativeModulesProxy, EventEmitter, Subscription } from 'expo-modules-cor
 // Import the native module. On web, it will be resolved to RnYandexAds.web.ts
 // and on native platforms to RnYandexAds.ts
 import RnYandexAdsModule from './RnYandexAdsModule';
-import RnYandexAdsView from './RnYandexAdsView';
-import { ChangeEventPayload, RnYandexAdsViewProps } from './RnYandexAds.types';
+import RnYandexAdsView, { RnYandexAdsViewRef } from './RnYandexAdsView';
 
-// Get the native constant value.
-export const PI = RnYandexAdsModule.PI;
-
-export function hello(): string {
-  return RnYandexAdsModule.hello();
+export async function initialize(options: {
+  userConsent?: boolean,
+  locationConsent?: boolean,
+  enableLogging?: boolean,
+  enableDebugErrorIndicator?: boolean,
+}) : Promise<string> {
+  return await RnYandexAdsModule.initialize(options);
 }
 
-export async function setValueAsync(value: string) {
-  return await RnYandexAdsModule.setValueAsync(value);
+export async function showInterstitial(adUnitId: string) {
+  return await RnYandexAdsModule.showInterstitial(adUnitId);
 }
 
-const emitter = new EventEmitter(RnYandexAdsModule ?? NativeModulesProxy.RnYandexAds);
-
-export function addChangeListener(listener: (event: ChangeEventPayload) => void): Subscription {
-  return emitter.addListener<ChangeEventPayload>('onChange', listener);
-}
-
-export { RnYandexAdsView, RnYandexAdsViewProps, ChangeEventPayload };
+export { RnYandexAdsView, RnYandexAdsViewRef };

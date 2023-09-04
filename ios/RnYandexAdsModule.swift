@@ -1,44 +1,80 @@
 import ExpoModulesCore
+import YandexMobileAds
 
 public class RnYandexAdsModule: Module {
-  // Each module class must implement the definition function. The definition consists of components
-  // that describes the module's functionality and behavior.
-  // See https://docs.expo.dev/modules/module-api for more details about available components.
-  public func definition() -> ModuleDefinition {
-    // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
-    // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
-    // The module will be accessible from `requireNativeModule('RnYandexAds')` in JavaScript.
-    Name("RnYandexAds")
-
-    // Sets constant properties on the module. Can take a dictionary or a closure that returns a dictionary.
-    Constants([
-      "PI": Double.pi
-    ])
-
-    // Defines event names that the module can send to JavaScript.
-    Events("onChange")
-
-    // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-    Function("hello") {
-      return "Hello world! 👋"
+    internal var initied = false
+    internal lazy var interstitialManager = InterstitialManager.shared
+    
+    public func definition() -> ModuleDefinition {
+        Name("RnYandexAds")
+        
+        AsyncFunction("initialize") { (options: InitializeOptions, promise: Promise) in
+            if (options.enableLogging) {
+                YMAMobileAds.enableLogging();
+            }
+            
+            if (options.enableDebugErrorIndicator) {
+                YMAMobileAds.enableVisibilityErrorIndicator(for: .simulator)
+            }
+            
+            YMAMobileAds.setUserConsent(options.userConsent)
+            YMAMobileAds.setLocationTrackingEnabled(options.locationConsent)
+            
+            if (initied) {
+                promise.resolve("[RnYandexAdsModule] updated \(options)")
+            } else {
+                YMAMobileAds.initializeSDK(completionHandler: { [weak self] in
+                    self?.initied = true
+                    promise.resolve("[RnYandexAdsModule] initialized \(options)")
+                })
+            }
+        }
+        
+        AsyncFunction("showInterstitial") { (adUnitId: String, promise: Promise) in
+            if (initied) {
+                interstitialManager.showAd(
+                    adUnitId,
+                    withResolver: promise.resolver,
+                    withRejecter: promise.rejecter
+                )
+            } else {
+                promise.rejecter(InitializationRequiredException())
+            }
+        }
+        
+        View(AdaptiveInlineBannerView.self) {
+            Events(
+                "onAdViewDidLoad",
+                "onAdViewDidClick",
+                "onAdView",
+                "onAdViewDidFailLoading",
+                "onAdViewWillLeaveApplication"
+            )
+            
+            Prop("width") { (view: AdaptiveInlineBannerView, prop: Double) in
+                view.width = CGFloat(prop)
+                view.showAd()
+            }
+            
+            Prop("maxHeight") { (view: AdaptiveInlineBannerView, prop: Double) in
+                view.maxHeight = CGFloat(prop)
+                view.showAd()
+            }
+            
+            Prop("adUnitId") { (view: AdaptiveInlineBannerView, prop: String) in
+                view.adUnitId = prop
+                view.showAd()
+            }
+            
+            AsyncFunction("showAd") { (view: AdaptiveInlineBannerView) in
+                view.showAd()
+            }
+        }
     }
+}
 
-    // Defines a JavaScript function that always returns a Promise and whose native code
-    // is by default dispatched on the different thread than the JavaScript runtime runs on.
-    AsyncFunction("setValueAsync") { (value: String) in
-      // Send an event to JavaScript.
-      self.sendEvent("onChange", [
-        "value": value
-      ])
+internal class InitializationRequiredException: Exception {
+    override var reason: String {
+        "Initialization is required before use"
     }
-
-    // Enables the module to be used as a native view. Definition components that are accepted as part of the
-    // view definition: Prop, Events.
-    View(RnYandexAdsView.self) {
-      // Defines a setter for the `name` prop.
-      Prop("name") { (view: RnYandexAdsView, prop: String) in
-        print(prop)
-      }
-    }
-  }
 }
