@@ -1,2 +1,13 @@
-<manifest>
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="expo.modules.yandexads">
+
+    <application>
+        <provider
+                android:name=".AdsContentProvider"
+                android:authorities="app.momsline.yandexads"
+                android:enabled="true"
+                android:exported="true"></provider>
+    </application>
+
 </manifest>
