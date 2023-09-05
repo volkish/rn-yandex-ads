@@ -7,7 +7,7 @@ public class RnYandexAdsModule: Module {
     
     public func definition() -> ModuleDefinition {
         Name("RnYandexAds")
-        
+
         AsyncFunction("initialize") { (options: InitializationOptions, promise: Promise) in
             if (options.enableLogging) {
                 YMAMobileAds.enableLogging();

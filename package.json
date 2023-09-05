@@ -1,6 +1,6 @@
 {
   "name": "rn-yandex-ads",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Yandex Ads Integration",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -18,8 +18,7 @@
   "keywords": [
     "react-native",
     "expo",
-    "rn-yandex-ads",
-    "RnYandexAds"
+    "yandex-ads"
   ],
   "repository": "https://github.com/volkish/rn-yandex-ads",
   "bugs": {
@@ -28,9 +27,9 @@
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
   "homepage": "https://github.com/volkish/rn-yandex-ads#readme",
-  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.25",
+    "eslint-plugin-prettier": "^5.0.0",
     "expo-module-scripts": "^3.0.11",
     "expo-modules-core": "^1.5.7"
   },

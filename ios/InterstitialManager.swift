@@ -19,7 +19,7 @@ final class InterstitialManager: NSObject {
     public typealias ResolveClosure = (Any?) -> Void
     public typealias RejectClosure = (Exception) -> Void
     
-    private var interstitialAd: YMAInterstitialAd?
+    private weak var interstitialAd: YMAInterstitialAd?
     private lazy var interstitialAdLoader: YMAInterstitialAdLoader = {
         let loader = YMAInterstitialAdLoader()
         loader.delegate = self
@@ -31,10 +31,6 @@ final class InterstitialManager: NSObject {
     
     private var didClick = false
     private var trackImpression = false
-    
-    private func makeMessageDescription(_ interstitialAd: YMAInterstitialAd) -> String {
-        "Interstitial Ad with Unit ID: \(String(describing: interstitialAd.adInfo?.adUnitId))"
-    }
     
     func showAd(
         _ adUnitID: String,

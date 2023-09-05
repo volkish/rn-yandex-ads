@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
   s.dependency 'ExpoModulesCore'
   s.dependency 'YandexMobileAds', '6.0.0'
   s.dependency 'YandexMobileAdsInstream', '0.20.0'
+  s.dependency 'YandexMobileAdsMediation', '6.0.0.0'
 
   # Swift/Objective-C compatibility
   s.pod_target_xcconfig = {

@@ -74,6 +74,8 @@
     <string>Light</string>
     <key>UIViewControllerBasedStatusBarAppearance</key>
     <false/>
+    <key>GADApplicationIdentifier</key>
+    <string>ca-app-pub-9053710991237653~5695044579</string>
     <key>SKAdNetworkItems</key>
     <array>
         <dict>
