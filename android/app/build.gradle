@@ -122,9 +122,9 @@ android {
         viewBinding true
       }
 
-    namespace 'expo.modules.yandexads.example'
+    namespace 'app.momsline.yandexads'
     defaultConfig {
-        applicationId 'expo.modules.yandexads.example'
+        applicationId 'app.momsline.yandexads'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

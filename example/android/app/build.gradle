@@ -76,6 +76,10 @@ def enableProguardInReleaseBuilds = (findProperty('android.enableProguardInRelea
  */
 def jscFlavor = 'org.webkit:android-jsc:+'
 
+configurations.all {
+    resolutionStrategy { force 'androidx.core:core-ktx:1.6.0' }
+}
+
 android {
     ndkVersion rootProject.ext.ndkVersion
 
