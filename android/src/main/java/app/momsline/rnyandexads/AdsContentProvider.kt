@@ -1,4 +1,4 @@
-package app.momsline.yandexads
+package app.momsline.rnyandexads
 
 import android.content.Context
 import android.content.ContentProvider

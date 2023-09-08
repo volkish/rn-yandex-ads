@@ -1,4 +1,4 @@
-package app.momsline.yandexads
+package app.momsline.rnyandexads
 
 import androidx.preference.PreferenceManager
 import expo.modules.kotlin.modules.Module
@@ -14,7 +14,7 @@ data class InitializeOptions(
     val enableDebugErrorIndicator: Boolean = false
 )
 
-class RNYandexAdsModule : Module() {
+class RnYandexAdsModule : Module() {
 
     // Each module class must implement the definition function. The definition consists of components
     // that describes the module's functionality and behavior.
@@ -23,7 +23,7 @@ class RNYandexAdsModule : Module() {
         // Sets the name of the module that JavaScript code will use to refer to the module. Takes a string as an argument.
         // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
         // The module will be accessible from `requireNativeModule('ExpoYandexAds')` in JavaScript.
-        Name("RNYandexAds")
+        Name("RnYandexAds")
 
         /*
             // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.

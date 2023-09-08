@@ -1,4 +1,4 @@
-package app.momsline.yandexads
+package app.momsline.rnyandexads
 
 import android.util.Log
 import com.yandex.mobile.ads.common.AdRequest
