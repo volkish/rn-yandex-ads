@@ -9,6 +9,7 @@ import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
 
 class InterstitialAdManager(adUnitId: String) {
 
+    /*
     var mInterstitialAd: InterstitialAd;
     private val eventLogger = InterstitialAdEventLogger()
 
@@ -59,4 +60,6 @@ class InterstitialAdManager(adUnitId: String) {
             Log.d("EYA", "Impression: ${data?.rawData}")
         }
     }
+
+     */
 }

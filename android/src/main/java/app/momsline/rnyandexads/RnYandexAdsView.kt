@@ -6,7 +6,7 @@ import android.view.Gravity
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
 import com.yandex.mobile.ads.banner.BannerAdView
-import com.yandex.mobile.ads.banner.AdSize
+import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
@@ -39,14 +39,14 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
             Log.d("EYA", "Size: $size")
 
             when (size) {
-                "BANNER_300x250" -> mBannerAdView.setAdSize(AdSize.flexibleSize(300, 250));
-                "BANNER_300x300" -> mBannerAdView.setAdSize(AdSize.flexibleSize(300, 300));
-                "BANNER_320x50" -> mBannerAdView.setAdSize(AdSize.flexibleSize(320, 50));
-                "BANNER_320x100" -> mBannerAdView.setAdSize(AdSize.flexibleSize(320, 100));
-                "BANNER_400x240" -> mBannerAdView.setAdSize(AdSize.flexibleSize(400, 240));
-                "BANNER_728x90" -> mBannerAdView.setAdSize(AdSize.flexibleSize(728, 90));
+                "BANNER_300x250" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 250));
+                "BANNER_300x300" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 300));
+                "BANNER_320x50" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,320, 50));
+                "BANNER_320x100" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,320, 100));
+                "BANNER_400x240" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,400, 240));
+                "BANNER_728x90" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,728, 90));
                 else -> { // Note the block
-                    mBannerAdView.setAdSize(AdSize.flexibleSize(300, 250));
+                    mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 250));
                 }
             }
             mBannerAdView.setBannerAdEventListener(eventLogger);

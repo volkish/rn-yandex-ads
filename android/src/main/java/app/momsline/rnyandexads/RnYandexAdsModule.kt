@@ -69,14 +69,14 @@ class RnYandexAdsModule : Module() {
 
         // Enables the module to be used as a native view. Definition components that are accepted as part of
         // the view definition: Prop, Events.
-        View(ExpoYandexAdsView::class) {
+        View(RnYandexAdsView::class) {
             // Defines a setter for the `name` prop.
-            Prop("size") { view: ExpoYandexAdsView, prop: String ->
+            Prop("size") { view: RnYandexAdsView, prop: String ->
                 view.updateSize(prop)
                 view.initBanner();
             }
 
-            Prop("adUnitId") { view: ExpoYandexAdsView, prop: String ->
+            Prop("adUnitId") { view: RnYandexAdsView, prop: String ->
                 view.updateAdUnitId(prop)
                 view.initBanner();
             }
