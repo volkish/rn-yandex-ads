@@ -1,4 +1,4 @@
-package app.momsline.rnyandexads
+package expo.modules.rnyandexads
 
 import androidx.preference.PreferenceManager
 import expo.modules.kotlin.modules.Module

@@ -1,4 +1,4 @@
-package app.momsline.rnyandexads
+package expo.modules.rnyandexads
 
 import android.content.Context
 import android.content.ContentProvider

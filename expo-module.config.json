@@ -4,6 +4,6 @@
     "modules": ["RnYandexAdsModule"]
   },
   "android": {
-    "modules": ["app.momsline.rnyandexads.RnYandexAdsModule"]
+    "modules": ["expo.modules.rnyandexads.RnYandexAdsModule"]
   }
 }
