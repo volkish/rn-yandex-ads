@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import {
   StyleSheet,
   Text,
@@ -7,6 +7,7 @@ import {
   SafeAreaView,
 } from "react-native";
 import * as RnYandexAds from "rn-yandex-ads";
+import { ModuleVersion } from "rn-yandex-ads";
 
 export default function App() {
   const [initialized, setInitialized] = useState(false);
@@ -14,6 +15,15 @@ export default function App() {
   const [interstitialResponse, setInterstitialResponse] =
     useState<Record<string, any>>();
   const [random, setRandom] = useState(0);
+
+  useEffect(() => {
+    RnYandexAds.initialize({
+      enableLogging: true,
+      enableDebugErrorIndicator: true,
+    }).then(() => {
+      setInitialized(true);
+    });
+  }, []);
 
   const onPress = useCallback(async () => {
     console.log(
@@ -92,7 +102,7 @@ export default function App() {
           </>
         )}
 
-        <Button title="Initialize And Show Banner" onPress={onPress} />
+        <Button title="Show Banner" onPress={onPress} />
 
         {initialized && (
           <>
@@ -107,6 +117,7 @@ export default function App() {
         <Button title="Set LocationTracking" onPress={onLocationTracking} />
 
         <Text>{RnYandexAds.SDKVersion}</Text>
+        <Text>{RnYandexAds.ModuleVersion}</Text>
       </ScrollView>
     </SafeAreaView>
   );
