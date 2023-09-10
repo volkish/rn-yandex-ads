@@ -7,7 +7,7 @@ public class RnYandexAdsModule: Module {
     
     public func definition() -> ModuleDefinition {
         Name("RnYandexAds")
-
+        
         AsyncFunction("initialize") { (options: InitializationOptions, promise: Promise) in
             if (options.enableLogging) {
                 YMAMobileAds.enableLogging();
@@ -32,7 +32,7 @@ public class RnYandexAdsModule: Module {
         
         Property("SDKVersion")
             .get({ return YMAMobileAds.sdkVersion() })
-
+        
         Function("setUserConsent") { (state: Bool) in
             YMAMobileAds.setUserConsent(state)
             print("UserConsent: \(state)")
@@ -45,13 +45,14 @@ public class RnYandexAdsModule: Module {
         
         AsyncFunction("showInterstitial") { (adUnitId: String, promise: Promise) in
             if (initied) {
-                interstitialManager.showAd(
-                    adUnitId,
-                    withResolver: promise.resolver,
-                    withRejecter: promise.rejecter
-                )
+                guard let currentViewController = self.appContext?.utilities?.currentViewController() else {
+                    promise.reject(MissingCurrentViewControllerException())
+                    return
+                }
+                
+                interstitialManager.showAd(adUnitId, withPromise: promise)
             } else {
-                promise.rejecter(InitializationRequiredException())
+                promise.reject(InitializationRequiredException())
             }
         }
         
@@ -86,8 +87,3 @@ public class RnYandexAdsModule: Module {
     }
 }
 
-internal class InitializationRequiredException: Exception {
-    override var reason: String {
-        "Initialization is required before use"
-    }
-}

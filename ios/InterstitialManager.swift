@@ -19,26 +19,22 @@ final class InterstitialManager: NSObject {
     public typealias ResolveClosure = (Any?) -> Void
     public typealias RejectClosure = (Exception) -> Void
     
-    private weak var interstitialAd: YMAInterstitialAd?
+    private var interstitialAd: YMAInterstitialAd?
     private lazy var interstitialAdLoader: YMAInterstitialAdLoader = {
         let loader = YMAInterstitialAdLoader()
         loader.delegate = self
         return loader
     }()
     
-    private var resolver: ResolveClosure?
-    private var rejecter: RejectClosure?
-    
+    private var promise: Promise?
     private var didClick = false
     private var trackImpression = false
     
     func showAd(
         _ adUnitID: String,
-        withResolver resolver: @escaping ResolveClosure,
-        withRejecter rejecter: @escaping RejectClosure
+        withPromise promise: Promise
     ) {
-        self.resolver = resolver
-        self.rejecter = rejecter
+        self.promise = promise
         
         interstitialAdLoader.loadAd(
             with: YMAAdRequestConfiguration(adUnitID: adUnitID)
@@ -46,11 +42,10 @@ final class InterstitialManager: NSObject {
     }
     
     private func cleanUp () {
-        rejecter = nil
-        resolver = nil
-        
+        promise = nil
         didClick = false
         trackImpression = false
+        interstitialAd = nil
     }
 }
 
@@ -58,19 +53,19 @@ final class InterstitialManager: NSObject {
 extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
     func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didLoad interstitialAd: YMAInterstitialAd) {
         guard let viewController = RCTPresentedViewController() else {
-            rejecter?(MissingCurrentViewControllerException())
+            promise?.rejecter(MissingCurrentViewControllerException())
             cleanUp()
             
             return;
         }
         
         self.interstitialAd = interstitialAd
-        self.interstitialAd?.delegate = self
-        self.interstitialAd?.show(from: viewController)
+        self.interstitialAd!.delegate = self
+        self.interstitialAd!.show(from: viewController)
     }
     
     func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didFailToLoadWithError error: YMAAdRequestError) {
-        rejecter?(FailedToLoadException(error.description))
+        promise?.reject(FailedToLoadException(error.description))
         cleanUp()
     }
 }
@@ -78,12 +73,12 @@ extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
 
 extension InterstitialManager: YMAInterstitialAdDelegate {
     func interstitialAd(_ interstitialAd: YMAInterstitialAd, didFailToShowWithError error: Error) {
-        rejecter?(FailedToShowException(error.localizedDescription))
+        promise?.reject(FailedToShowException(error.localizedDescription))
         cleanUp()
     }
     
     func interstitialAdDidDismiss(_ interstitialAd: YMAInterstitialAd) {
-        resolver?([
+        promise?.resolve([
             "didClick": didClick,
             "trackImpression": trackImpression,
         ])
@@ -96,24 +91,5 @@ extension InterstitialManager: YMAInterstitialAdDelegate {
     
     func interstitialAd(_ interstitialAd: YMAInterstitialAd, didTrackImpressionWith impressionData: YMAImpressionData?) {
         trackImpression = true
-    }
-}
-
-internal class MissingCurrentViewControllerException: Exception {
-    override var reason: String {
-        "Cannot determine currently presented view controller"
-    }
-}
-
-internal class FailedToShowException: GenericException<String?> {
-    override var reason: String {
-        "Failed to show interstitial: '\(param ?? "nil")'"
-    }
-}
-
-
-internal class FailedToLoadException: GenericException<String?> {
-    override var reason: String {
-        "Failed to load interstitial: '\(param ?? "nil")'"
     }
 }
