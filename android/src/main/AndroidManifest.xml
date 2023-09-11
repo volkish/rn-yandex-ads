@@ -2,12 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="expo.modules.rnyandexads">
 
-  <application>
+  <application android:hardwareAccelerated="true">
     <provider
             android:name=".AdsContentProvider"
             android:authorities="expo.modules.rnyandexads"
             android:enabled="true"
             android:exported="true"></provider>
+
+    <meta-data
+            android:name="com.yandex.mobile.ads.AUTOMATIC_SDK_INITIALIZATION"
+            android:value="false" />
   </application>
 
 </manifest>

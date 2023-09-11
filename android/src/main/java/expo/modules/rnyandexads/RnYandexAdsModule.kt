@@ -25,7 +25,7 @@ class RnYandexAdsModule : Module() {
         // The module will be accessible from `requireNativeModule('ExpoYandexAds')` in JavaScript.
         Name("RnYandexAds")
 
-        /*
+/*
             // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
             Function("initialize") { options: InitializeOptions ->
               val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
@@ -56,7 +56,7 @@ class RnYandexAdsModule : Module() {
 
             MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
             MobileAds.initialize(Common.appContext) {
-                Log.d("EYA", "Mobile Ads init")
+                Log.d("EYA", "Mobile Ads init!!!")
             }
 
             MobileAds.enableLogging(true)
@@ -70,15 +70,33 @@ class RnYandexAdsModule : Module() {
         // Enables the module to be used as a native view. Definition components that are accepted as part of
         // the view definition: Prop, Events.
         View(RnYandexAdsView::class) {
+            Events(
+                "onAdViewDidLoad",
+                "onAdViewDidClick",
+                "onAdView",
+                "onAdViewDidFailLoading",
+                "onAdViewWillLeaveApplication"
+            )
+
             // Defines a setter for the `name` prop.
-            Prop("size") { view: RnYandexAdsView, prop: String ->
-                view.updateSize(prop)
+            Prop("width") { view: RnYandexAdsView, prop: Double ->
+                view.updateMaxWidth(prop.toInt())
+                view.initBanner();
+            }
+
+            Prop("maxHeight") { view: RnYandexAdsView, prop: Double ->
+                view.updateMaxHeight(prop.toInt())
                 view.initBanner();
             }
 
             Prop("adUnitId") { view: RnYandexAdsView, prop: String ->
                 view.updateAdUnitId(prop)
                 view.initBanner();
+            }
+
+            AsyncFunction("showAd") { view: RnYandexAdsView ->
+                Log.d("EYA", "Show ad func called")
+                view.initBanner()
             }
 
         }

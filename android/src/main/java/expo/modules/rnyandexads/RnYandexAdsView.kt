@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.Gravity
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.views.ExpoView
+import expo.modules.kotlin.viewevent.EventDispatcher
 import com.yandex.mobile.ads.banner.BannerAdView
 import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -18,7 +19,8 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
 
     private val eventLogger = BannerAdEventLogger()
 
-    var size: String = "";
+    var maxWidth: Int = 0;
+    var maxHeight: Int = 0;
     var adUnitId: String = "";
     lateinit var mBannerAdView: BannerAdView;
 
@@ -26,40 +28,45 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
         adUnitId = newValue
     }
 
-    fun updateSize(newValue: String) {
-        size = newValue
+    fun updateMaxWidth(newValue: Int) {
+        maxWidth = newValue
     }
 
+    fun updateMaxHeight(newValue: Int) {
+        maxHeight = newValue
+    }
+
+    private val onAdViewDidLoad by EventDispatcher()
+    private val onAdViewDidClick by EventDispatcher()
+    private val onAdView by EventDispatcher()
+    private val onAdViewDidFailLoading by EventDispatcher()
+    private val onAdViewWillLeaveApplication by EventDispatcher()
+
     fun initBanner() {
-        if (size.isNotEmpty() && adUnitId.isNotEmpty()) {
+
+        Log.d("EYA", "Trying to init banner!")
+
+        if (maxWidth > 0 && maxHeight > 0 && adUnitId.isNotEmpty()) {
             mBannerAdView = BannerAdView(context);
             mBannerAdView.setAdUnitId(adUnitId);
 
             Log.d("EYA", "Ad unit: $adUnitId")
-            Log.d("EYA", "Size: $size")
+            Log.d("EYA", "Size: $maxWidth x $maxHeight")
 
-            when (size) {
-                "BANNER_300x250" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 250));
-                "BANNER_300x300" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 300));
-                "BANNER_320x50" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,320, 50));
-                "BANNER_320x100" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,320, 100));
-                "BANNER_400x240" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,400, 240));
-                "BANNER_728x90" -> mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,728, 90));
-                else -> { // Note the block
-                    mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext,300, 250));
-                }
-            }
+            mBannerAdView.setAdSize(BannerAdSize.inlineSize(Common.appContext, maxWidth, maxHeight));
+
             mBannerAdView.setBannerAdEventListener(eventLogger);
 
             val adRequest = AdRequest.Builder().build();
-
-            // Загрузка объявления.
-            mBannerAdView.loadAd(adRequest);
+/*
             mBannerAdView.layoutParams = LayoutParams(
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
                 android.view.ViewGroup.LayoutParams.MATCH_PARENT,
             )
             mBannerAdView.gravity = Gravity.CENTER
+            */
+
+            mBannerAdView.loadAd(adRequest);
         }
     }
 
@@ -70,7 +77,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
     private inner class BannerAdEventLogger : BannerAdEventListener {
 
         override fun onAdLoaded() {
-            Log.d("EYA", "Banner ad loaded")
+            Log.d("EYA", "Banner ad loaded!!!")
 
             val params = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
