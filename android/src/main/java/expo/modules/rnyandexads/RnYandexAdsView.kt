@@ -47,6 +47,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
         Log.d("EYA", "Trying to init banner!")
 
         if (maxWidth > 0 && maxHeight > 0 && adUnitId.isNotEmpty()) {
+
             mBannerAdView = BannerAdView(context);
             mBannerAdView.setAdUnitId(adUnitId);
 
@@ -58,15 +59,18 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
             mBannerAdView.setBannerAdEventListener(eventLogger);
 
             val adRequest = AdRequest.Builder().build();
-/*
-            mBannerAdView.layoutParams = LayoutParams(
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-                android.view.ViewGroup.LayoutParams.MATCH_PARENT,
-            )
-            mBannerAdView.gravity = Gravity.CENTER
-            */
 
-            mBannerAdView.loadAd(adRequest);
+            val params = ConstraintLayout.LayoutParams(
+                ConstraintLayout.LayoutParams.MATCH_PARENT,
+                ConstraintLayout.LayoutParams.WRAP_CONTENT,
+            ).apply {
+                bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
+            }
+
+            addView(mBannerAdView, params)
+
+            mBannerAdView.loadAd(adRequest)
+
         }
     }
 
@@ -79,6 +83,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
         override fun onAdLoaded() {
             Log.d("EYA", "Banner ad loaded!!!")
 
+
             val params = ConstraintLayout.LayoutParams(
                 ConstraintLayout.LayoutParams.MATCH_PARENT,
                 ConstraintLayout.LayoutParams.WRAP_CONTENT,
@@ -86,7 +91,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
                 bottomToBottom = ConstraintLayout.LayoutParams.PARENT_ID
             }
 
-            addView(mBannerAdView, params)
+            // addView(mBannerAdView, params)
         }
 
         override fun onAdFailedToLoad(error: AdRequestError) {

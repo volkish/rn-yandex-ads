@@ -1,29 +1,45 @@
 package expo.modules.rnyandexads
 
+import android.app.Activity
 import android.util.Log
-import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
 import com.yandex.mobile.ads.interstitial.InterstitialAdEventListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoadListener
+import com.yandex.mobile.ads.interstitial.InterstitialAdLoader
+import com.yandex.mobile.ads.common.AdRequestConfiguration
 
-class InterstitialAdManager(adUnitId: String) {
+class InterstitialAdManager(adUnitId: String, mActivity: Activity?) {
 
-    /*
-    var mInterstitialAd: InterstitialAd;
-    private val eventLogger = InterstitialAdEventLogger()
+
+   // var mInterstitialAd: InterstitialAd;
+  //  private val eventLogger = InterstitialAdEventLogger()
 
     init {
-        val adRequest = AdRequest.Builder().build();
 
-        mInterstitialAd = InterstitialAd(Common.appContext);
+        Log.d("EYA", "Interstitial init")
+        val loader = InterstitialAdLoader(Common.appContext).apply {
+            setAdLoadListener(object : InterstitialAdLoadListener {
+                override fun onAdLoaded(interstitialAd: InterstitialAd) {
+                    // now interstitialAd is ready to show
+                    Log.d("EYA", "Interstitial loaded")
+                    if (mActivity != null) {
+                        Log.d("EYA", "Interstitial show")
+                        interstitialAd.show(mActivity)
+                    } // ??????????
+                    else {
+                        Log.d("EYA", "Interstitial activity null")
+                    }
+                }
 
-        mInterstitialAd.setAdUnitId(adUnitId);
-        mInterstitialAd.setInterstitialAdEventListener(eventLogger);
-
-        mInterstitialAd.loadAd(adRequest);
+                override fun onAdFailedToLoad(adRequestError: AdRequestError) {}
+            })
+        }
+        loader.loadAd(AdRequestConfiguration.Builder(adUnitId).build())
     }
 
+    /*
     private inner class InterstitialAdEventLogger : InterstitialAdEventListener {
 
         override fun onAdLoaded() {
@@ -60,6 +76,6 @@ class InterstitialAdManager(adUnitId: String) {
             Log.d("EYA", "Impression: ${data?.rawData}")
         }
     }
+    */
 
-     */
 }

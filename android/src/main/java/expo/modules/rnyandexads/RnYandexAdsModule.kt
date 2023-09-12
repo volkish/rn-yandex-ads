@@ -62,8 +62,9 @@ class RnYandexAdsModule : Module() {
             MobileAds.enableLogging(true)
         }
 
-        AsyncFunction("interstitialAd") { adUnitId: String  ->
-            val interstitialAd = InterstitialAdManager(adUnitId);
+        AsyncFunction("showInterstitial") { adUnitId: String  ->
+            Log.d("EYA", "Interstitial trying to load!!!")
+            val interstitialAd = InterstitialAdManager(adUnitId, appContext.currentActivity);
         }
 
 
