@@ -28,7 +28,7 @@ final class InterstitialManager: NSObject {
     
     private var promise: Promise?
     private var didClick = false
-    private var trackImpression = false
+    private var trackImpression: YMAImpressionData?
     
     func showAd(
         _ adUnitID: String,
@@ -44,7 +44,7 @@ final class InterstitialManager: NSObject {
     private func cleanUp () {
         promise = nil
         didClick = false
-        trackImpression = false
+        trackImpression = nil
         interstitialAd = nil
     }
 }
@@ -53,7 +53,7 @@ final class InterstitialManager: NSObject {
 extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
     func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didLoad interstitialAd: YMAInterstitialAd) {
         guard let viewController = RCTPresentedViewController() else {
-            promise?.rejecter(MissingCurrentViewControllerException())
+            promise?.reject(MissingCurrentViewControllerException())
             cleanUp()
             
             return;
@@ -80,8 +80,8 @@ extension InterstitialManager: YMAInterstitialAdDelegate {
     func interstitialAdDidDismiss(_ interstitialAd: YMAInterstitialAd) {
         promise?.resolve([
             "didClick": didClick,
-            "trackImpression": trackImpression,
-        ])
+            "impressionData": convertImpressionData(trackImpression),
+        ] as [String : Any])
         cleanUp()
     }
     
@@ -90,6 +90,6 @@ extension InterstitialManager: YMAInterstitialAdDelegate {
     }
     
     func interstitialAd(_ interstitialAd: YMAInterstitialAd, didTrackImpressionWith impressionData: YMAImpressionData?) {
-        trackImpression = true
+        trackImpression = impressionData
     }
 }

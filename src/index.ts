@@ -3,7 +3,7 @@ import RnYandexAdsView, { RnYandexAdsViewRef } from "./RnYandexAdsView";
 
 export const SDKVersion = RnYandexAdsModule.SDKVersion;
 
-export const ModuleVersion = "0.1.3";
+export const PackageVersion = "0.1.5";
 
 export async function initialize(options: {
   userConsent?: boolean;

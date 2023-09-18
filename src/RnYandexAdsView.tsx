@@ -10,18 +10,16 @@ const NativeView = requireNativeViewManager("RnYandexAds");
 
 export { RnYandexAdsViewRef };
 export default React.forwardRef(function (
-  props: RnYandexAdsViewProps,
+  { width, maxHeight, ...props }: RnYandexAdsViewProps,
   ref?: React.ForwardedRef<RnYandexAdsViewRef>,
 ) {
   return (
     <NativeView
       ref={ref}
-      style={{
-        background: "#ccc",
-        width: props.width,
-        height: props.maxHeight,
-      }}
       {...props}
+      width={width}
+      maxHeight={maxHeight}
+      style={{ width, height: maxHeight }}
     />
   );
 });

@@ -28,19 +28,18 @@ class AdaptiveInlineBannerView: ExpoView {
         let adSize = YMABannerAdSize.inlineSize(withWidth: width!, maxHeight: maxHeight!)
         let adView = YMAAdView(adUnitID: adUnitId!, adSize: adSize)
         
+        _adView = adView
+        
         adView.delegate = self
         adView.translatesAutoresizingMaskIntoConstraints = false
-
-        addSubview(adView)
         
+        addSubview(adView)
         NSLayoutConstraint.activate([
             adView.topAnchor.constraint(equalTo: self.topAnchor),
             adView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
         ])
         
         adView.loadAd()
-        
-        _adView = adView
     }
 }
 
@@ -54,7 +53,9 @@ extension AdaptiveInlineBannerView: YMAAdViewDelegate {
     }
     
     func adView(_ adView: YMAAdView, didTrackImpressionWith impressionData: YMAImpressionData?) {
-        onAdView()
+        onAdView([
+            "impressionData": convertImpressionData(impressionData)
+        ])
     }
     
     func adViewDidFailLoading(_ adView: YMAAdView, error: Error) {

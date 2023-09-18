@@ -2,7 +2,7 @@ import ExpoModulesCore
 import YandexMobileAds
 
 public class RnYandexAdsModule: Module {
-    internal var initied = false
+    internal var initialed = false
     internal lazy var interstitialManager = InterstitialManager.shared
     
     public func definition() -> ModuleDefinition {
@@ -20,11 +20,11 @@ public class RnYandexAdsModule: Module {
             YMAMobileAds.setUserConsent(options.userConsent)
             YMAMobileAds.setLocationTrackingEnabled(options.locationConsent)
             
-            if (initied) {
+            if (initialed) {
                 promise.resolve("[RnYandexAdsModule] updated \(options)")
             } else {
                 YMAMobileAds.initializeSDK(completionHandler: { [weak self] in
-                    self?.initied = true
+                    self?.initialed = true
                     promise.resolve("[RnYandexAdsModule] initialized \(options)")
                 })
             }
@@ -44,12 +44,7 @@ public class RnYandexAdsModule: Module {
         }
         
         AsyncFunction("showInterstitial") { (adUnitId: String, promise: Promise) in
-            if (initied) {
-                guard let currentViewController = self.appContext?.utilities?.currentViewController() else {
-                    promise.reject(MissingCurrentViewControllerException())
-                    return
-                }
-                
+            if (initialed) {
                 interstitialManager.showAd(adUnitId, withPromise: promise)
             } else {
                 promise.reject(InitializationRequiredException())

@@ -7,7 +7,6 @@ import {
   SafeAreaView,
 } from "react-native";
 import * as RnYandexAds from "rn-yandex-ads";
-import { ModuleVersion } from "rn-yandex-ads";
 
 export default function App() {
   const [initialized, setInitialized] = useState(false);
@@ -66,7 +65,7 @@ export default function App() {
               key={random}
               adUnitId="demo-banner-yandex"
               width={320}
-              maxHeight={320}
+              maxHeight={650}
               ref={ref}
               onAdViewDidLoad={() =>
                 setBannerState((state) => ({ ...state, onAdViewDidLoad: true }))
@@ -77,9 +76,14 @@ export default function App() {
                   onAdViewDidClick: true,
                 }))
               }
-              onAdView={() =>
-                setBannerState((state) => ({ ...state, onAdView: true }))
-              }
+              onAdView={(event) => {
+                const impressionData = event.nativeEvent.impressionData;
+
+                setBannerState((state) => ({
+                  ...state,
+                  onAdView: impressionData,
+                }));
+              }}
               onAdViewDidFailLoading={() =>
                 setBannerState((state) => ({
                   ...state,
@@ -117,7 +121,7 @@ export default function App() {
         <Button title="Set LocationTracking" onPress={onLocationTracking} />
 
         <Text>{RnYandexAds.SDKVersion}</Text>
-        <Text>{RnYandexAds.ModuleVersion}</Text>
+        <Text>{RnYandexAds.PackageVersion}</Text>
       </ScrollView>
     </SafeAreaView>
   );

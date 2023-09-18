@@ -4,14 +4,44 @@ export type RnYandexAdsViewRef = {
   showAd(): Promise<void>;
 };
 
+export type InitializeOptions = {
+  userConsent?: boolean;
+  locationConsent?: boolean;
+  enableLogging?: boolean;
+  enableDebugErrorIndicator?: boolean;
+};
+
+export type ImpressionData = {
+  currency: string;
+  revenueUSD: string;
+  precision: string;
+  revenue: string;
+  requestId: string;
+  blockId: string;
+  adType: string;
+  ad_unit_id: string;
+  network: {
+    name: string;
+    adapter: string;
+    ad_unit_id: string;
+  };
+};
+
+export type AdViewDidClick = NativeSyntheticEvent<undefined>;
+export type AdViewDidLoadEvent = NativeSyntheticEvent<undefined>;
+export type AdViewDidFailLoading = NativeSyntheticEvent<undefined>;
+export type AdViewEvent = NativeSyntheticEvent<{
+  impressionData: ImpressionData;
+}>;
+
 export type RnYandexAdsViewProps = {
   width: number;
   maxHeight: number;
   adUnitId: string;
-  onAdViewDidLoad?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAdViewDidClick?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAdView?: (event: NativeSyntheticEvent<undefined>) => void;
-  onAdViewDidFailLoading?: (event: NativeSyntheticEvent<any>) => void;
+  onAdViewDidLoad?: (event: AdViewDidLoadEvent) => void;
+  onAdViewDidClick?: (event: AdViewDidClick) => void;
+  onAdView?: (event: AdViewEvent) => void;
+  onAdViewDidFailLoading?: (event: AdViewDidFailLoading) => void;
   onAdViewWillLeaveApplication?: (
     event: NativeSyntheticEvent<undefined>,
   ) => void;
