@@ -25,27 +25,10 @@ class RnYandexAdsModule : Module() {
         // The module will be accessible from `requireNativeModule('ExpoYandexAds')` in JavaScript.
         Name("RnYandexAds")
 
-/*
-            // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
-            Function("initialize") { options: InitializeOptions ->
-              val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
-              preferences.run {
-                  MobileAds.setUserConsent(options.userConsent)
-                  MobileAds.setLocationConsent(options.locationConsent)
-                  //MobileAds.setAgeRestrictedUser(options.ageRestrictedUser)
-                  MobileAds.setAgeRestrictedUser(false)
-              }
 
-              MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
-              MobileAds.initialize(Common.appContext) {
-                  println("MobileAds init")
-              }
+        // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
+        AsyncFunction("initialize") { options: InitializeOptions ->
 
-              MobileAds.enableLogging(options.enableLogging)
-            }
-            */
-
-        OnCreate {
             val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
             preferences.run {
                 MobileAds.setUserConsent(true)
