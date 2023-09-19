@@ -1,6 +1,7 @@
 package expo.modules.rnyandexads
 
 import android.content.Context
+import android.graphics.Color
 import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
@@ -30,7 +31,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
     var adUnitId: String = "";
 
     private var bannerAdSize: BannerAdSize? = null
-    lateinit var mBannerAdView: BannerAdView;
+    private var mBannerAdView: BannerAdView? = null;
 
     fun updateAdUnitId(newValue: String) {
         adUnitId = newValue
@@ -50,30 +51,17 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
     private val onAdViewDidFailLoading by EventDispatcher()
     private val onAdViewWillLeaveApplication by EventDispatcher()
 
-    private fun getBannerAdSize(): BannerAdSize? {
-
-        val screenHeight = resources.displayMetrics.run { heightPixels / density }.roundToInt()
-        // Calculate the width of the ad, taking into account the padding in the ad container.
-        val adWidthPixels = 600;
-        //val adWidthPixels = resources.displayMetrics.widthPixels;
-        //val adWidthPixels = binding.coordinatorLayout.width
-        val adWidth = (adWidthPixels / resources.displayMetrics.density).roundToInt()
-        val maxAdHeight = screenHeight / 3
-        bannerAdSize = BannerAdSize.inlineSize(context, adWidth, maxAdHeight)
-
-        Log.d("EYA", "Screen height: $screenHeight")
-        Log.d("EYA", "Ad width: $adWidth")
-
-        return bannerAdSize;
-    }
-
-    fun initBanner() {
+    fun showAd() {
+        setBackgroundColor(Color.BLUE)
 
         if (maxWidth > 0 && maxHeight > 0 && adUnitId.isNotEmpty()) {
+            if (mBannerAdView != null) {
+                removeView(mBannerAdView)
+            }
 
             mBannerAdView = BannerAdView(context).apply {
                 setAdUnitId(adUnitId)
-                getBannerAdSize()?.let { setAdSize(it) }
+                setAdSize(BannerAdSize.inlineSize(context, 240, 200))
                 setBannerAdEventListener(eventLogger)
             }
             val params = ConstraintLayout.LayoutParams(
@@ -85,23 +73,19 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
 
             addView(mBannerAdView, params)
 
-            Log.d("EYA", bannerAdSize.toString())
+            Log.d("EYA", "Banner added to view")
 
             val adRequest = AdRequest.Builder().build()
 
-            mBannerAdView.loadAd(adRequest)
+            mBannerAdView?.loadAd(adRequest)
 
         }
-    }
-
-    init {
-
     }
 
     private inner class BannerAdEventLogger : BannerAdEventListener {
 
         override fun onAdLoaded() {
-            Log.d("EYA", "Banner ad loaded!")
+            Log.d("EYA", "Banner ad loaded")
         }
 
         override fun onAdFailedToLoad(error: AdRequestError) {

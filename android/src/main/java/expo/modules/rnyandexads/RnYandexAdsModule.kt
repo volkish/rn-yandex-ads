@@ -7,13 +7,6 @@ import com.yandex.mobile.ads.common.MobileAds
 import com.yandex.mobile.ads.instream.MobileInstreamAds
 import android.util.Log;
 
-data class InitializeOptions(
-    val userConsent: Boolean = false,
-    val locationConsent: Boolean = false,
-    val enableLogging: Boolean = false,
-    val enableDebugErrorIndicator: Boolean = false
-)
-
 class RnYandexAdsModule : Module() {
 
     // Each module class must implement the definition function. The definition consists of components
@@ -39,14 +32,24 @@ class RnYandexAdsModule : Module() {
 
             MobileInstreamAds.setAdGroupPreloading(INSTREAM_AD_GROUP_PRELOADING_ENABLED)
             MobileAds.initialize(Common.appContext) {
-                Log.d("EYA", "Mobile Ads init!!!")
+                Log.d("EYA", "Mobile Ads init done")
             }
 
             MobileAds.enableLogging(true)
         }
 
+        Function("setUserConsent") { state: Boolean ->
+            MobileAds.setUserConsent(state)
+            Log.d("EYA", "UserConsent: $state")
+        }
+
+        Function("setLocationTrackingEnabled") { state: Boolean ->
+            MobileAds.setLocationConsent(state)
+            Log.d("EYA", "LocationTrackingEnabled: $state")
+        }
+
         AsyncFunction("showInterstitial") { adUnitId: String  ->
-            Log.d("EYA", "Interstitial trying to load!!!")
+            Log.d("EYA", "Interstitial trying to load")
             val interstitialAd = InterstitialAdManager(adUnitId, appContext.currentActivity);
         }
 
@@ -65,22 +68,22 @@ class RnYandexAdsModule : Module() {
             // Defines a setter for the `name` prop.
             Prop("width") { view: RnYandexAdsView, prop: Double ->
                 view.updateMaxWidth(prop.toInt())
-                view.initBanner();
+                view.showAd();
             }
 
             Prop("maxHeight") { view: RnYandexAdsView, prop: Double ->
                 view.updateMaxHeight(prop.toInt())
-                view.initBanner();
+                view.showAd();
             }
 
             Prop("adUnitId") { view: RnYandexAdsView, prop: String ->
                 view.updateAdUnitId(prop)
-                view.initBanner();
+                view.showAd();
             }
 
             AsyncFunction("showAd") { view: RnYandexAdsView ->
                 Log.d("EYA", "Show ad func called")
-                view.initBanner()
+                view.showAd()
             }
 
         }
