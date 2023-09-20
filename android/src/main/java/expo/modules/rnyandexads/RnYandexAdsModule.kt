@@ -5,7 +5,7 @@ import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import com.yandex.mobile.ads.common.MobileAds
 import com.yandex.mobile.ads.instream.MobileInstreamAds
-import android.util.Log;
+import android.util.Log
 
 class RnYandexAdsModule : Module() {
 
@@ -17,16 +17,14 @@ class RnYandexAdsModule : Module() {
         // Can be inferred from module's class name, but it's recommended to set it explicitly for clarity.
         // The module will be accessible from `requireNativeModule('ExpoYandexAds')` in JavaScript.
         Name("RnYandexAds")
-
-
+        
         // Defines a JavaScript synchronous function that runs the native code on the JavaScript thread.
         AsyncFunction("initialize") { options: InitializeOptions ->
-
+            
             val preferences = PreferenceManager.getDefaultSharedPreferences(Common.appContext)
             preferences.run {
-                MobileAds.setUserConsent(true)
-                MobileAds.setLocationConsent(true)
-                //MobileAds.setAgeRestrictedUser(options.ageRestrictedUser)
+                MobileAds.setUserConsent(options.userConsent)
+                MobileAds.setLocationConsent(options.locationConsent)
                 MobileAds.setAgeRestrictedUser(false)
             }
 
@@ -50,7 +48,7 @@ class RnYandexAdsModule : Module() {
 
         AsyncFunction("showInterstitial") { adUnitId: String  ->
             Log.d("EYA", "Interstitial trying to load")
-            val interstitialAd = InterstitialAdManager(adUnitId, appContext.currentActivity);
+            val interstitialAd = InterstitialAdManager(adUnitId, appContext.currentActivity)
         }
 
 
@@ -68,17 +66,17 @@ class RnYandexAdsModule : Module() {
             // Defines a setter for the `name` prop.
             Prop("width") { view: RnYandexAdsView, prop: Double ->
                 view.updateMaxWidth(prop.toInt())
-                view.showAd();
+                view.showAd()
             }
 
             Prop("maxHeight") { view: RnYandexAdsView, prop: Double ->
                 view.updateMaxHeight(prop.toInt())
-                view.showAd();
+                view.showAd()
             }
 
             Prop("adUnitId") { view: RnYandexAdsView, prop: String ->
                 view.updateAdUnitId(prop)
-                view.showAd();
+                view.showAd()
             }
 
             AsyncFunction("showAd") { view: RnYandexAdsView ->
