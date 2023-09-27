@@ -12,7 +12,6 @@ import com.yandex.mobile.ads.common.ImpressionData
 import expo.modules.kotlin.AppContext
 import expo.modules.kotlin.viewevent.EventDispatcher
 import expo.modules.kotlin.views.ExpoView
-import kotlin.math.roundToInt
 
 
 class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(context, appContext) {
@@ -22,8 +21,6 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
     private var maxWidth: Int = 0
     private var maxHeight: Int = 0
     private var adUnitId: String = ""
-
-    private var adsViewState: Int = 0
 
     private var mBannerAdView: BannerAdView? = null
 
@@ -39,15 +36,19 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
         maxHeight = newValue
     }
 
-    fun updateState() {
-        Log.d("EYA", "Banner state updated")
+    override fun requestLayout() {
+        super.requestLayout()
 
-        adsViewState++
+        // This view relies on a measure + layout pass happening after it calls requestLayout().
+        // https://github.com/facebook/react-native/issues/4990#issuecomment-180415510
+        // https://stackoverflow.com/questions/39836356/react-native-resize-custom-ui-component
+        post(measureAndLayout)
+    }
 
-        measure(0, 0)
-        layout(x.roundToInt(), y.roundToInt(),
-                (maxWidth * resources.displayMetrics.density).roundToInt(),
-                (maxHeight * resources.displayMetrics.density).roundToInt())
+    private val measureAndLayout = Runnable {
+        measure(MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+                MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY))
+        layout(left, top, right, bottom)
     }
 
     private val onAdViewDidLoad by EventDispatcher()
@@ -75,9 +76,7 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
 
                 val adRequest = AdRequest.Builder().build()
                 it.loadAd(adRequest)
-
             }
-
         }
     }
 
@@ -85,12 +84,6 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
 
         override fun onAdLoaded() {
             Log.d("EYA", "Banner ad loaded")
-
-            if (mBannerAdView?.parent is RnYandexAdsView) {
-                (mBannerAdView?.parent as RnYandexAdsView).updateState()
-            } else {
-                Log.d("EYA", "Parent is not view")
-            }
         }
 
         override fun onAdFailedToLoad(error: AdRequestError) {

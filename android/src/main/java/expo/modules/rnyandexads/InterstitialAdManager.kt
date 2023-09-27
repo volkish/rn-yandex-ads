@@ -2,6 +2,7 @@ package expo.modules.rnyandexads
 
 import android.app.Activity
 import android.util.Log
+import com.yandex.mobile.ads.common.AdError
 import com.yandex.mobile.ads.common.AdRequestError
 import com.yandex.mobile.ads.common.ImpressionData
 import com.yandex.mobile.ads.interstitial.InterstitialAd
@@ -12,14 +13,13 @@ import com.yandex.mobile.ads.common.AdRequestConfiguration
 
 class InterstitialAdManager(adUnitId: String, mActivity: Activity?) {
 
-
-   // var mInterstitialAd: InterstitialAd;
-  //  private val eventLogger = InterstitialAdEventLogger()
+    private var interstitialAdLoader: InterstitialAdLoader? = null
+    private var interstitialAd: InterstitialAd? = null
 
     init {
 
         Log.d("EYA", "Interstitial init")
-        val loader = InterstitialAdLoader(Common.appContext).apply {
+        interstitialAdLoader = InterstitialAdLoader(Common.appContext).apply {
             setAdLoadListener(object : InterstitialAdLoadListener {
                 override fun onAdLoaded(interstitialAd: InterstitialAd) {
                     // now interstitialAd is ready to show
@@ -36,46 +36,36 @@ class InterstitialAdManager(adUnitId: String, mActivity: Activity?) {
                 override fun onAdFailedToLoad(adRequestError: AdRequestError) {}
             })
         }
-        loader.loadAd(AdRequestConfiguration.Builder(adUnitId).build())
+        interstitialAdLoader!!.loadAd(AdRequestConfiguration.Builder(adUnitId).build())
     }
 
-    /*
+    private fun destroyInterstitial() {
+        // don't forget to clean up event listener to null?
+        interstitialAd?.setAdEventListener(null)
+        interstitialAd = null
+    }
+
     private inner class InterstitialAdEventLogger : InterstitialAdEventListener {
-
-        override fun onAdLoaded() {
-            Log.d("EYA", "Interstitial ad loaded")
-
-            mInterstitialAd.show();
-        }
-
-        override fun onAdFailedToLoad(error: AdRequestError) {
-            Log.d("EYA", "Interstitial ad failed to load with code ${error.code}: ${error.description}")
-        }
 
         override fun onAdShown() {
             Log.d("EYA", "Interstitial ad shown")
         }
 
+        override fun onAdFailedToShow(adError: AdError) {
+            Log.d("EYA", "Interstitial ad show error: $adError")
+        }
+
         override fun onAdDismissed() {
             Log.d("EYA", "Interstitial ad dismissed")
+            destroyInterstitial()
         }
 
         override fun onAdClicked() {
             Log.d("EYA", "Interstitial ad clicked")
         }
 
-        override fun onLeftApplication() {
-            Log.d("EYA", "Left application")
-        }
-
-        override fun onReturnedToApplication() {
-            Log.d("EYA", "Returned to application")
-        }
-
-        override fun onImpression(data: ImpressionData?) {
+        override fun onAdImpression(data: ImpressionData?) {
             Log.d("EYA", "Impression: ${data?.rawData}")
         }
     }
-    */
-
 }
