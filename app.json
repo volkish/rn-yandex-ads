@@ -2,7 +2,7 @@
   "expo": {
     "name": "rn-yandex-ads",
     "slug": "rn-yandex-ads",
-    "version": "0.1.1",
+    "version": "0.1.8",
     "description": "Yandex Ads Integration",
     "sdkVersion": "49.0.0",
     "platforms": [
