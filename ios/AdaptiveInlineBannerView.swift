@@ -34,6 +34,7 @@ class AdaptiveInlineBannerView: ExpoView {
         adView.translatesAutoresizingMaskIntoConstraints = false
         
         addSubview(adView)
+        
         NSLayoutConstraint.activate([
             adView.topAnchor.constraint(equalTo: self.topAnchor),
             adView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
@@ -52,7 +53,7 @@ extension AdaptiveInlineBannerView: YMAAdViewDelegate {
         onAdViewDidClick()
     }
     
-    func adView(_ adView: YMAAdView, didTrackImpressionWith impressionData: YMAImpressionData?) {
+    func adView(_ adView: YMAAdView, didTrackImpression impressionData: YMAImpressionData?) {
         onAdView([
             "impressionData": convertImpressionData(impressionData)
         ])

@@ -289,21 +289,35 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-rnyandexadsexample/Pods-rnyandexadsexample-resources.sh",
-				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-11.11.3/AppLovinSDKResources.bundle",
+				"${PODS_ROOT}/AdColonyYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-12.1.0/AppLovinSDKResources.bundle",
+				"${PODS_ROOT}/AppLovinYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
 				"${PODS_ROOT}/BigoADS/BigoADS/BigoADSRes.bundle",
+				"${PODS_ROOT}/BigoADSYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
 				"${PODS_ROOT}/ChartboostSDK/ChartboostSDKResources.bundle",
+				"${PODS_ROOT}/ChartboostYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
+				"${PODS_ROOT}/GoogleYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/InMobiYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/IronSourceYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/MintegralYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/MyTargetYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/AccessibilityResources.bundle",
-				"${PODS_ROOT}/YandexMobileAds/static/YandexMobileAds.xcframework/YandexMobileAdsBundle.bundle",
+				"${PODS_ROOT}/StartAppYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/UnityAdsYandexMobileAdsAdapters/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/YandexMobileAds/static/YandexMobileAds.xcframework/MobileAdsBundle.bundle",
+				"${PODS_ROOT}/YandexMobileAds/PrivacyInfo.xcprivacy",
+				"${PODS_ROOT}/YandexMobileAdsInstream/PrivacyInfo.xcprivacy",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/PrivacyInfo.xcprivacy",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BigoADSRes.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChartboostSDKResources.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AccessibilityResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexMobileAdsBundle.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MobileAdsBundle.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -452,6 +466,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -470,6 +485,11 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 			};
@@ -510,6 +530,10 @@
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = i386;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					_LIBCPP_ENABLE_CXX17_REMOVED_UNARY_BINARY_FUNCTION,
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -525,6 +549,11 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_CFLAGS = "$(inherited)";
 				OTHER_CPLUSPLUSFLAGS = "$(inherited)";
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-Wl",
+					"-ld_classic",
+				);
 				REACT_NATIVE_PATH = "${PODS_ROOT}/../../node_modules/react-native";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
