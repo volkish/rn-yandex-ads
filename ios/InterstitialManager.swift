@@ -47,6 +47,10 @@ final class InterstitialManager: NSObject {
         trackImpression = nil
         interstitialAd = nil
     }
+
+    deinit {
+        cleanUp()
+    }
 }
 
 

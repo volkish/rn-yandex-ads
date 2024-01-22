@@ -16,10 +16,7 @@ class AdaptiveInlineBannerView: ExpoView {
     let onAdViewWillLeaveApplication = EventDispatcher("onAdViewWillLeaveApplication")
     
     func showAd() {
-        if (_adView != nil) {
-            _adView!.removeFromSuperview()
-            _adView = nil
-        }
+        cleanUp()
         
         if (adUnitId == nil || width == nil || maxHeight == nil) {
             return
@@ -41,6 +38,17 @@ class AdaptiveInlineBannerView: ExpoView {
         ])
         
         adView.loadAd()
+    }
+
+    private func cleanUp() {
+        if (_adView != nil) {
+            _adView!.removeFromSuperview()
+            _adView = nil
+        }
+    }
+
+    deinit {
+        cleanUp()
     }
 }
 

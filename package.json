@@ -1,6 +1,6 @@
 {
   "name": "rn-yandex-ads",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "description": "Yandex Ads Integration",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -13,10 +13,7 @@
     "prepublishOnly": "expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
-    "open:android": "open -a \"Android Studio\" example/android",
-    "start": "expo start --dev-client",
-    "android": "expo run:android",
-    "ios": "expo run:ios"
+    "open:android": "open -a \"Android Studio\" example/android"
   },
   "keywords": [
     "react-native",
@@ -30,20 +27,12 @@
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
   "homepage": "https://github.com/volkish/rn-yandex-ads#readme",
-  "dependencies": {
-    "expo": "~49.0.8",
-    "expo-splash-screen": "~0.20.5",
-    "expo-status-bar": "~1.4.4",
-    "react": "18.2.0",
-    "react-native": "0.72.4",
-    "react-native-gradle-plugin": "^0.71.17"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.25",
     "eslint-plugin-prettier": "^5.0.0",
     "expo-module-scripts": "^3.0.11",
-    "expo-modules-core": "^1.5.7",
-    "@babel/core": "^7.20.0"
+    "expo-modules-core": "^1.5.7"
   },
   "peerDependencies": {
     "expo": "*",
