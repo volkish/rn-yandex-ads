@@ -33,6 +33,8 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>GADApplicationIdentifier</key>
+	<string>ca-app-pub-9053710991237653~5695044579</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -42,78 +44,41 @@
 		<key>NSAllowsLocalNetworking</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>SplashScreen</string>
-	<key>UIRequiredDeviceCapabilities</key>
-	<array>
-		<string>armv7</string>
-	</array>
-	<key>UIRequiresFullScreen</key>
-	<false/>
-	<key>UIStatusBarStyle</key>
-	<string>UIStatusBarStyleDefault</string>
-	<key>UISupportedInterfaceOrientations</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-	</array>
-	<key>UISupportedInterfaceOrientations~ipad</key>
-	<array>
-		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIUserInterfaceStyle</key>
-	<string>Light</string>
-	<key>UIViewControllerBasedStatusBarAppearance</key>
-	<false/>
-	<key>GADApplicationIdentifier</key>
-	<string>ca-app-pub-9053710991237653~5695044579</string>
 	<key>SKAdNetworkItems</key>
 	<array>
 		<dict>
-			<!-- Yandex Ads -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>zq492l623r.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- AdMob -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>cstr6suwn9.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- MyTarget -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>n9x2a789qt.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- MyTarget -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>r26jy69rpl.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Start.io -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>5l3tpt7t6e.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- UnityAds -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>4dzt52r2t5.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- IronSource -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>su67r6k2v3.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Applovin -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>ludvb6z3bs.skadnetwork</string>
 		</dict>
 		<dict>
-			<!-- Mintegral -->
 			<key>SKAdNetworkIdentifier</key>
 			<string>kbd757ywx3.skadnetwork</string>
 		</dict>
@@ -970,5 +935,31 @@
 			<string>g69uk9uh2b.skadnetwork</string>
 		</dict>
 	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>SplashScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UIRequiresFullScreen</key>
+	<false/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleDefault</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+	</array>
+	<key>UISupportedInterfaceOrientations~ipad</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+		<string>UIInterfaceOrientationPortraitUpsideDown</string>
+		<string>UIInterfaceOrientationLandscapeLeft</string>
+		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>UIUserInterfaceStyle</key>
+	<string>Light</string>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
 </dict>
 </plist>

@@ -1,6 +1,6 @@
 {
   "name": "rn-yandex-ads",
-  "version": "0.1.9",
+  "version": "0.1.10",
   "description": "Yandex Ads Integration",
   "main": "build/index.js",
   "types": "build/index.d.ts",

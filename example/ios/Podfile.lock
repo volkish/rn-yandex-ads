@@ -47,13 +47,13 @@ PODS:
     - ExpoModulesCore
   - EXFont (11.10.2):
     - ExpoModulesCore
-  - Expo (50.0.2):
+  - Expo (50.0.4):
     - ExpoModulesCore
-  - ExpoFileSystem (16.0.4):
+  - ExpoFileSystem (16.0.5):
     - ExpoModulesCore
   - ExpoKeepAwake (12.8.2):
     - ExpoModulesCore
-  - ExpoModulesCore (1.11.7):
+  - ExpoModulesCore (1.11.8):
     - glog
     - RCT-Folly (= 2022.05.16.00)
     - React-Core
@@ -1229,7 +1229,7 @@ PODS:
     - React-jsi (= 0.73.2)
     - React-logger (= 0.73.2)
     - React-perflogger (= 0.73.2)
-  - RnYandexAds (0.1.9):
+  - RnYandexAds (0.1.10):
     - ExpoModulesCore
     - YandexMobileAds (= 6.3.0)
     - YandexMobileAdsInstream (= 0.23.0)
@@ -1534,10 +1534,10 @@ SPEC CHECKSUMS:
   DoubleConversion: fea03f2699887d960129cc54bba7e52542b6f953
   EXConstants: 988aa430ca0f76b43cd46b66e7fae3287f9cc2fc
   EXFont: 21b9c760abd593ce8f0d5386b558ced76018506f
-  Expo: 6c6526e76864e140363431722b22d0fa3cdeafd2
-  ExpoFileSystem: 39e454b8e7f2358ae2c8f8ec255fede4c3039493
+  Expo: 1e3bcf9dd99de57a636127057f6b488f0609681a
+  ExpoFileSystem: 04795dd4d47e76eaf12e38c92091f77d794f9e7f
   ExpoKeepAwake: 0f5cad99603a3268e50af9a6eb8b76d0d9ac956c
-  ExpoModulesCore: f103ff1346136b2926e1654f32b3f45ab0b74830
+  ExpoModulesCore: 96d1751929ad10622773bb729ab28a8423f0dd0c
   FBLazyVector: fbc4957d9aa695250b55d879c1d86f79d7e69ab4
   FBReactNativeSpec: 86de768f89901ef6ed3207cd686362189d64ac88
   fmt: ff9d55029c625d3757ed641535fd4a75fedc7ce9
@@ -1601,7 +1601,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: df8945a656356ff10f58f65a70820478bfcf33ad
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
-  RnYandexAds: 51a034168bda6d59d91d5d010f64c91aa15e9250
+  RnYandexAds: 62ebd0b5eaaa80fbec48cd3fe35677f3236b51ed
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   StartAppSDK: 747b8ed6991bf4badc4c26dcd0cc264896975b3e
   StartAppYandexMobileAdsAdapters: dedb6c9370408fb8a474997ea83e31ba5174a767
