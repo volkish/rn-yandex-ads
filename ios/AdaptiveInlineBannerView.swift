@@ -15,6 +15,16 @@ class AdaptiveInlineBannerView: ExpoView {
     let onAdViewDidFailLoading = EventDispatcher("onAdViewDidFailLoading")
     let onAdViewWillLeaveApplication = EventDispatcher("onAdViewWillLeaveApplication")
     
+    override func layoutSubviews() {
+      _adView?.frame = bounds
+    }
+    
+    required init(appContext: AppContext? = nil) {
+        super.init(appContext: appContext)
+
+        clipsToBounds = true
+    }
+    
     func showAd() {
         cleanUp()
         
@@ -33,8 +43,10 @@ class AdaptiveInlineBannerView: ExpoView {
         addSubview(adView)
         
         NSLayoutConstraint.activate([
+            adView.leadingAnchor.constraint(equalTo: self.leadingAnchor),
+            adView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             adView.topAnchor.constraint(equalTo: self.topAnchor),
-            adView.centerXAnchor.constraint(equalTo: self.centerXAnchor)
+            adView.bottomAnchor.constraint(equalTo: self.bottomAnchor)
         ])
         
         adView.loadAd()

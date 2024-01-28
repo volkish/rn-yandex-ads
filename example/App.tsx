@@ -98,6 +98,13 @@ export default function App() {
               }
             />
 
+            <RnYandexAds.RnYandexAdsView
+              key={random + "x1"}
+              adUnitId="demo-banner-yandex"
+              width={320}
+              maxHeight={320}
+            />
+
             {bannerState && (
               <Text>{JSON.stringify(bannerState, null, " ")}</Text>
             )}
