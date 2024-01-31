@@ -69,7 +69,10 @@ extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
     }
     
     func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didFailToLoadWithError error: YMAAdRequestError) {
-        promise?.reject(FailedToLoadException(error.description))
+        let id = error.adUnitId
+        let error = error.error
+
+        promise?.reject(FailedToLoadException("Ad with Unit ID: \(String(describing: id)). Error: \(String(describing: error))"))
         cleanUp()
     }
 }

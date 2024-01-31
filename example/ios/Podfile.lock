@@ -1229,7 +1229,7 @@ PODS:
     - React-jsi (= 0.73.2)
     - React-logger (= 0.73.2)
     - React-perflogger (= 0.73.2)
-  - RnYandexAds (0.1.10):
+  - RnYandexAds (0.1.11):
     - ExpoModulesCore
     - YandexMobileAds (= 6.3.0)
     - YandexMobileAdsInstream (= 0.23.0)
@@ -1601,7 +1601,7 @@ SPEC CHECKSUMS:
   React-runtimescheduler: df8945a656356ff10f58f65a70820478bfcf33ad
   React-utils: f5bc61e7ea3325c0732ae2d755f4441940163b85
   ReactCommon: 45b5d4f784e869c44a6f5a8fad5b114ca8f78c53
-  RnYandexAds: 62ebd0b5eaaa80fbec48cd3fe35677f3236b51ed
+  RnYandexAds: b1c34f232407b0fae05b335ef7e0d9988018d0b4
   SocketRocket: f32cd54efbe0f095c4d7594881e52619cfe80b17
   StartAppSDK: 747b8ed6991bf4badc4c26dcd0cc264896975b3e
   StartAppYandexMobileAdsAdapters: dedb6c9370408fb8a474997ea83e31ba5174a767
