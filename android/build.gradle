@@ -6,8 +6,8 @@ buildscript {
     ndkVersion = "23.1.7779620"
     compileSdkVersion = 33
     buildToolsVersion = "23.0.1"
-    targetSdkVersion = 21
-    minSdkVersion = 21
+    targetSdkVersion = 33
+    minSdkVersion = 23
     frescoVersion = '2.5.0'
     reactNativeVersion = "0.71.7"
     androidXCore = "1.6.0"
@@ -105,7 +105,8 @@ android {
 dependencies {
   implementation project(':expo-modules-core')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-  implementation 'com.yandex.android:mobileads:6.0.0'
+  // implementation 'com.yandex.android:mobileads-mediation:6.3.0.0'
+  implementation 'com.yandex.android:mobileads:6.3.0'
 
   implementation("androidx.preference:preference-ktx:1.2.0")
   implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -130,5 +131,26 @@ allprojects {
         excludeGroup "com.facebook.react"
       }
     }
+
+    /*
+    // IronSource
+    maven { url 'https://android-sdk.is.com/' }
+
+    // Pangle
+    maven { url 'https://artifact.bytedance.com/repository/pangle' }
+
+    // Tapjoy
+    maven { url 'https://sdk.tapjoy.com/' }
+
+    // Mintegral
+    maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'}
+
+    // Chartboost
+    maven { url 'https://cboost.jfrog.io/artifactory/chartboost-ads/' }
+
+    // AppNext
+    maven { url 'https://dl.appnext.com/' }
+    */
+
   }
 }
