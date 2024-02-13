@@ -39,7 +39,7 @@ class InterstitialAdManager(adUnitId: String, mActivity: Activity?) {
         interstitialAdLoader!!.loadAd(AdRequestConfiguration.Builder(adUnitId).build())
     }
 
-    private fun destroyInterstitial() {
+    private fun destroyInterstitialAd() {
         // don't forget to clean up event listener to null?
         interstitialAd?.setAdEventListener(null)
         interstitialAd = null
@@ -57,7 +57,7 @@ class InterstitialAdManager(adUnitId: String, mActivity: Activity?) {
 
         override fun onAdDismissed() {
             Log.d("EYA", "Interstitial ad dismissed")
-            destroyInterstitial()
+            destroyInterstitialAd()
         }
 
         override fun onAdClicked() {

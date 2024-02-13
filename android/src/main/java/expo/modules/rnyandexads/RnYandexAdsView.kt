@@ -59,6 +59,8 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
 
     fun showAd() {
         if (maxWidth > 0 && maxHeight > 0 && adUnitId.isNotEmpty()) {
+            cleanUpAd()
+
             mBannerAdView = BannerAdView(context).also {
                 it.setAdUnitId(adUnitId)
                 it.setAdSize(BannerAdSize.inlineSize(context, maxWidth, maxHeight))
@@ -80,10 +82,26 @@ class RnYandexAdsView(context: Context, appContext: AppContext) : ExpoView(conte
         }
     }
 
+    fun cleanUpAd() {
+        if (mBannerAdView != null) {
+            mBannerAdView?.destroy()
+            mBannerAdView = null
+        }
+    }
+
+    override fun onDetachedFromWindow() {
+        cleanUpAd()
+
+        // Освобождение ресурсов
+        // Вызывается при уничтожении компонента
+        super.onDetachedFromWindow()
+    }
+
     private inner class BannerAdEventLogger : BannerAdEventListener {
 
         override fun onAdLoaded() {
             Log.d("EYA", "Banner ad loaded")
+
         }
 
         override fun onAdFailedToLoad(error: AdRequestError) {
