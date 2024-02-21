@@ -52,7 +52,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'maven-publish'
 
 group = 'expo.modules.rnyandexads'
-version = '0.1.0'
+version = '0.1.12'
 
 
 // Creating sources with comments
@@ -88,14 +88,14 @@ android {
   }
 
   kotlinOptions {
-      jvmTarget = '11' // <----
+      jvmTarget = '17' // <----
   }
 
   defaultConfig {
     minSdkVersion safeExtGet("minSdkVersion", 21)
     targetSdkVersion safeExtGet("targetSdkVersion", 31)
     versionCode 1
-    versionName "0.1.0"
+    versionName "0.1.12"
   }
   lintOptions {
     abortOnError false
@@ -105,8 +105,9 @@ android {
 dependencies {
   implementation project(':expo-modules-core')
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
-  // implementation 'com.yandex.android:mobileads-mediation:6.3.0.0'
-  implementation 'com.yandex.android:mobileads:6.3.0'
+
+  implementation 'com.yandex.android:mobileads-mediation:6.3.0.0'
+  //implementation 'com.yandex.android:mobileads:6.3.0'
 
   implementation("androidx.preference:preference-ktx:1.2.0")
   implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
@@ -131,26 +132,6 @@ allprojects {
         excludeGroup "com.facebook.react"
       }
     }
-
-    /*
-    // IronSource
-    maven { url 'https://android-sdk.is.com/' }
-
-    // Pangle
-    maven { url 'https://artifact.bytedance.com/repository/pangle' }
-
-    // Tapjoy
-    maven { url 'https://sdk.tapjoy.com/' }
-
-    // Mintegral
-    maven { url 'https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea'}
-
-    // Chartboost
-    maven { url 'https://cboost.jfrog.io/artifactory/chartboost-ads/' }
-
-    // AppNext
-    maven { url 'https://dl.appnext.com/' }
-    */
-
   }
 }
+
