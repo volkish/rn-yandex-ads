@@ -19,16 +19,16 @@ final class InterstitialManager: NSObject {
     public typealias ResolveClosure = (Any?) -> Void
     public typealias RejectClosure = (Exception) -> Void
     
-    private var interstitialAd: YMAInterstitialAd?
-    private lazy var interstitialAdLoader: YMAInterstitialAdLoader = {
-        let loader = YMAInterstitialAdLoader()
+    private var interstitialAd: InterstitialAd?
+    private lazy var interstitialAdLoader: InterstitialAdLoader = {
+        let loader = InterstitialAdLoader()
         loader.delegate = self
         return loader
     }()
     
     private var promise: Promise?
     private var didClick = false
-    private var trackImpression: YMAImpressionData?
+    private var trackImpression: ImpressionData?
     
     func showAd(
         _ adUnitID: String,
@@ -37,7 +37,7 @@ final class InterstitialManager: NSObject {
         self.promise = promise
         
         interstitialAdLoader.loadAd(
-            with: YMAAdRequestConfiguration(adUnitID: adUnitID)
+            with: AdRequestConfiguration(adUnitID: adUnitID)
         )
     }
     
@@ -54,8 +54,8 @@ final class InterstitialManager: NSObject {
 }
 
 
-extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
-    func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didLoad interstitialAd: YMAInterstitialAd) {
+extension InterstitialManager: InterstitialAdLoaderDelegate {
+    func interstitialAdLoader(_ adLoader: InterstitialAdLoader, didLoad interstitialAd: InterstitialAd) {
         guard let viewController = RCTPresentedViewController() else {
             promise?.reject(MissingCurrentViewControllerException())
             cleanUp()
@@ -68,7 +68,7 @@ extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
         self.interstitialAd!.show(from: viewController)
     }
     
-    func interstitialAdLoader(_ adLoader: YMAInterstitialAdLoader, didFailToLoadWithError error: YMAAdRequestError) {
+    func interstitialAdLoader(_ adLoader: InterstitialAdLoader, didFailToLoadWithError error: AdRequestError) {
         let id = error.adUnitId
         let error = error.error
 
@@ -78,13 +78,13 @@ extension InterstitialManager: YMAInterstitialAdLoaderDelegate {
 }
 
 
-extension InterstitialManager: YMAInterstitialAdDelegate {
-    func interstitialAd(_ interstitialAd: YMAInterstitialAd, didFailToShowWithError error: Error) {
+extension InterstitialManager: InterstitialAdDelegate {
+    func interstitialAd(_ interstitialAd: InterstitialAd, didFailToShowWithError error: Error) {
         promise?.reject(FailedToShowException(error.localizedDescription))
         cleanUp()
     }
     
-    func interstitialAdDidDismiss(_ interstitialAd: YMAInterstitialAd) {
+    func interstitialAdDidDismiss(_ interstitialAd: InterstitialAd) {
         promise?.resolve([
             "didClick": didClick,
             "impressionData": convertImpressionData(trackImpression),
@@ -92,11 +92,11 @@ extension InterstitialManager: YMAInterstitialAdDelegate {
         cleanUp()
     }
     
-    func interstitialAdDidClick(_ interstitialAd: YMAInterstitialAd) {
+    func interstitialAdDidClick(_ interstitialAd: InterstitialAd) {
         didClick = true
     }
     
-    func interstitialAd(_ interstitialAd: YMAInterstitialAd, didTrackImpressionWith impressionData: YMAImpressionData?) {
+    func interstitialAd(_ interstitialAd: InterstitialAd, didTrackImpressionWith impressionData: ImpressionData?) {
         trackImpression = impressionData
     }
 }

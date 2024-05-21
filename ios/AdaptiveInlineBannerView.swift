@@ -3,7 +3,7 @@ import YandexMobileAds
 
 class AdaptiveInlineBannerView: ExpoView {
     
-    private var _adView: YMAAdView?
+    private var _adView: AdView?
     
     var adUnitId: String?
     var width: CGFloat?
@@ -32,8 +32,8 @@ class AdaptiveInlineBannerView: ExpoView {
             return
         }
         
-        let adSize = YMABannerAdSize.inlineSize(withWidth: width!, maxHeight: maxHeight!)
-        let adView = YMAAdView(adUnitID: adUnitId!, adSize: adSize)
+        let adSize = BannerAdSize.inlineSize(withWidth: width!, maxHeight: maxHeight!)
+        let adView = AdView(adUnitID: adUnitId!, adSize: adSize)
         
         _adView = adView
         
@@ -64,28 +64,28 @@ class AdaptiveInlineBannerView: ExpoView {
     }
 }
 
-extension AdaptiveInlineBannerView: YMAAdViewDelegate {
-    func adViewDidLoad(_ adView: YMAAdView) {
+extension AdaptiveInlineBannerView: AdViewDelegate {
+    func adViewDidLoad(_ adView: AdView) {
         onAdViewDidLoad()
     }
     
-    func adViewDidClick(_ adView: YMAAdView) {
+    func adViewDidClick(_ adView: AdView) {
         onAdViewDidClick()
     }
     
-    func adView(_ adView: YMAAdView, didTrackImpression impressionData: YMAImpressionData?) {
+    func adView(_ adView: AdView, didTrackImpression impressionData: ImpressionData?) {
         onAdView([
             "impressionData": convertImpressionData(impressionData)
         ])
     }
     
-    func adViewDidFailLoading(_ adView: YMAAdView, error: Error) {
+    func adViewDidFailLoading(_ adView: AdView, error: Error) {
         onAdViewDidFailLoading([
             "error": error
         ])
     }
     
-    func adViewWillLeaveApplication(_ adView: YMAAdView) {
+    func adViewWillLeaveApplication(_ adView: AdView) {
         onAdViewWillLeaveApplication()
     }
 }

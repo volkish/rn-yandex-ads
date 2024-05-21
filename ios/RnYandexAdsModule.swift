@@ -10,20 +10,20 @@ public class RnYandexAdsModule: Module {
         
         AsyncFunction("initialize") { (options: InitializationOptions, promise: Promise) in
             if (options.enableLogging) {
-                YMAMobileAds.enableLogging();
+                MobileAds.enableLogging();
             }
             
             if (options.enableDebugErrorIndicator) {
-                YMAMobileAds.enableVisibilityErrorIndicator(for: .simulator)
+                MobileAds.enableVisibilityErrorIndicator(for: .simulator)
             }
             
-            YMAMobileAds.setUserConsent(options.userConsent)
-            YMAMobileAds.setLocationTrackingEnabled(options.locationConsent)
+            MobileAds.setUserConsent(options.userConsent)
+            MobileAds.setLocationTrackingEnabled(options.locationConsent)
             
             if (isInitialized) {
                 promise.resolve("[RnYandexAdsModule] updated \(options)")
             } else {
-                YMAMobileAds.initializeSDK(completionHandler: { [weak self] in
+                MobileAds.initializeSDK(completionHandler: { [weak self] in
                     self?.isInitialized = true
                     promise.resolve("[RnYandexAdsModule] initialized \(options)")
                 })
@@ -31,15 +31,15 @@ public class RnYandexAdsModule: Module {
         }
         
         Property("SDKVersion")
-            .get({ return YMAMobileAds.sdkVersion() })
+            .get({ return MobileAds.sdkVersion() })
         
         Function("setUserConsent") { (state: Bool) in
-            YMAMobileAds.setUserConsent(state)
+            MobileAds.setUserConsent(state)
             print("UserConsent: \(state)")
         }
         
         Function("setLocationTrackingEnabled") { (state: Bool) in
-            YMAMobileAds.setLocationTrackingEnabled(state)
+            MobileAds.setLocationTrackingEnabled(state)
             print("LocationTrackingEnabled: \(state)")
         }
         

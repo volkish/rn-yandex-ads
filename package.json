@@ -1,6 +1,6 @@
 {
   "name": "rn-yandex-ads",
-  "version": "0.1.13",
+  "version": "0.2.0",
   "description": "Yandex Ads Integration",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -27,12 +27,11 @@
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
   "homepage": "https://github.com/volkish/rn-yandex-ads#readme",
-  "dependencies": {},
   "devDependencies": {
-    "@types/react": "^18.0.25",
     "eslint-plugin-prettier": "^5.0.0",
-    "expo-module-scripts": "^3.0.11",
-    "expo-modules-core": "^1.5.7"
+    "@types/react": "^18.0.25",
+    "expo-module-scripts": "^3.5.1",
+    "expo-modules-core": "^1.12.11"
   },
   "peerDependencies": {
     "expo": "*",

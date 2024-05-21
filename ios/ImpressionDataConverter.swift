@@ -8,13 +8,13 @@
 import Foundation
 import YandexMobileAds
 
-struct ImpressionDataNetwork: Codable {
+struct xImpressionDataNetwork: Codable {
     var name: String
     var adapter: String
     var ad_unit_id: String
 }
 
-struct ImpressionData: Codable {
+struct xImpressionData: Codable {
     var currency: String
     var revenueUSD: String
     var precision: String
@@ -23,15 +23,15 @@ struct ImpressionData: Codable {
     var blockId: String
     var adType: String
     var ad_unit_id: String
-    var network: ImpressionDataNetwork
+    var network: xImpressionDataNetwork
 }
 
-func convertImpressionData(_ impressionData: YMAImpressionData?) -> [String: Any] {
+func convertImpressionData(_ impressionData: ImpressionData?) -> [String: Any] {
     do {
         if let encodedData = impressionData,
            let binaryEncodedData = encodedData.rawData.data(using: .utf8)
         {
-            let data = try JSONDecoder().decode(ImpressionData.self, from: binaryEncodedData)
+            let data = try JSONDecoder().decode(xImpressionData.self, from: binaryEncodedData)
             
             return [
                 "currency": data.currency,
