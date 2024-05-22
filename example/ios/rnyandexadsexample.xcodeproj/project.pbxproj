@@ -250,8 +250,6 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-rnyandexadsexample/Pods-rnyandexadsexample-resources.sh",
-				"${PODS_ROOT}/AppLovinSDK/applovin-ios-sdk-12.3.1/AppLovinSDKResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/AppLovinYandexMobileAdsAdapters/AppLovinYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaCore/AppMetricaCore.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaCoreExtension/AppMetricaCoreExtension.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaCoreUtils/AppMetricaCoreUtils.bundle",
@@ -265,35 +263,18 @@
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaProtobuf/AppMetricaProtobuf.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaProtobufUtils/AppMetricaProtobufUtils.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/AppMetricaStorageUtils/AppMetricaStorageUtils.bundle",
-				"${PODS_ROOT}/BigoADS/BigoADS/BigoADSRes.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/BigoADS/BigoADS.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/BigoADSYandexMobileAdsAdapters/BigoADSYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${PODS_ROOT}/ChartboostSDK/ChartboostSDKResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/ChartboostYandexMobileAdsAdapters/ChartboostYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/EXConstants.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/EXConstants/ExpoConstants_privacy.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/ExpoFileSystem/ExpoFileSystem_privacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/Google-Mobile-Ads-SDK/GoogleMobileAdsResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleUserMessagingPlatform/UserMessagingPlatformResources.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/GoogleYandexMobileAdsAdapters/GoogleYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/InMobiYandexMobileAdsAdapters/InMobiYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/IronSourceSDK/IronSourcePrivacyInfo.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/IronSourceYandexMobileAdsAdapters/IronSourceYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/KSCrash/KSCrashPrivacy.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MintegralAdSDK/MTGSDK.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/MintegralYandexMobileAdsAdapters/MintegralYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/MyTargetYandexMobileAdsAdapters/MyTargetYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/React-Core/RCTI18nStrings.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/StartAppYandexMobileAdsAdapters/StartAppYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${PODS_CONFIGURATION_BUILD_DIR}/UnityAdsYandexMobileAdsAdapters/UnityAdsYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${PODS_ROOT}/YandexMobileAds/static/YandexMobileAds.xcframework/MobileAdsBundle.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/YandexMobileAds/YandexMobileAds_PrivacyInfo.bundle",
 				"${PODS_CONFIGURATION_BUILD_DIR}/YandexMobileAdsInstream/YandexMobileAdsInstream_PrivacyInfo.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinSDKResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppLovinYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaCore.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaCoreExtension.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaCoreUtils.bundle",
@@ -307,27 +288,12 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaProtobuf.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaProtobufUtils.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/AppMetricaStorageUtils.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BigoADSRes.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BigoADS.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/BigoADSYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChartboostSDKResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ChartboostYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/EXConstants.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoConstants_privacy.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ExpoFileSystem_privacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMobileAdsResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UserMessagingPlatformResources.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/InMobiYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IronSourcePrivacyInfo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/IronSourceYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/KSCrashPrivacy.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MTGSDK.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MintegralYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MyTargetYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/RCTI18nStrings.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/StartAppYandexMobileAdsAdapters_PrivacyInfo.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/UnityAdsYandexMobileAdsAdapters_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MobileAdsBundle.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexMobileAds_PrivacyInfo.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/YandexMobileAdsInstream_PrivacyInfo.bundle",
@@ -363,12 +329,10 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-rnyandexadsexample/Pods-rnyandexadsexample-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/StartAppSDK/StartApp.framework/StartApp",
 				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/StartApp.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,7 +381,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = app.momsline.yandexads.example;
-				PRODUCT_NAME = rnyandexadsexample;
+				PRODUCT_NAME = "rnyandexadsexample";
 				SWIFT_OBJC_BRIDGING_HEADER = "rnyandexadsexample/rnyandexadsexample-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -445,7 +409,7 @@
 				);
 				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = app.momsline.yandexads.example;
-				PRODUCT_NAME = rnyandexadsexample;
+				PRODUCT_NAME = "rnyandexadsexample";
 				SWIFT_OBJC_BRIDGING_HEADER = "rnyandexadsexample/rnyandexadsexample-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
