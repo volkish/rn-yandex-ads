@@ -29,7 +29,26 @@
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      ["./admob-plugin.js"]
+      ["./admob-plugin.js"],
+      [
+        "expo-build-properties",
+        {
+          "android": {
+            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }",
+            "extraMavenRepos": [
+              "https://android-sdk.is.com/",
+              "https://artifact.bytedance.com/repository/pangle",
+              "https://sdk.tapjoy.com/",
+              "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
+              "https://cboost.jfrog.io/artifactory/chartboost-ads/",
+              "https://dl.appnext.com/"
+            ]
+          },
+          "ios": {
+            "useFrameworks": "static"
+          }
+        }
+      ]
     ]
   }
 }
