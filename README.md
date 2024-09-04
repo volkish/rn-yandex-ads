@@ -1,4 +1,4 @@
-Yandex Ads Integration
+Yandex Ads Integration based on Expo Modules (https://docs.expo.dev/modules/overview/)
 
 # Installation
 
