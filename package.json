@@ -29,6 +29,7 @@
   "author": "Artem Ivanov <ai@artem.cc> (https://github.com/volkish)",
   "license": "MIT",
   "homepage": "https://github.com/volkish/rn-yandex-ads#readme",
+  "dependencies": {},
   "devDependencies": {
     "@types/react": "^18.0.25",
     "expo-module-scripts": "^3.5.2",
@@ -38,10 +39,5 @@
     "expo": "*",
     "react": "*",
     "react-native": "*"
-  },
-  "dependencies": {
-    "expo": "~51.0.28",
-    "react": "18.2.0",
-    "react-native": "0.74.5"
   }
 }
