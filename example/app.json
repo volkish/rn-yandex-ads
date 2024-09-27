@@ -6,48 +6,29 @@
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "userInterfaceStyle": "light",
+    "scheme": "rn-yandex-ads-example",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "app.momsline.yandexads.example"
+      "bundleIdentifier": "expo.modules.rn-yandex-ads.example"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "app.momsline.yandexads.example"
+      "package": "expo.modules.rnyandexads.example"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
     "plugins": [
-      ["./admob-plugin.js"],
       [
-        "expo-build-properties",
-        {
-          "android": {
-            "extraProguardRules": "-keep class com.google.android.gms.internal.consent_sdk.** { *; }",
-            "extraMavenRepos": [
-              "https://android-sdk.is.com/",
-              "https://artifact.bytedance.com/repository/pangle",
-              "https://sdk.tapjoy.com/",
-              "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea",
-              "https://cboost.jfrog.io/artifactory/chartboost-ads/",
-              "https://dl.appnext.com/"
-            ]
-          },
-          "ios": {
-            "useFrameworks": "static"
-          }
-        }
+        "./admob-plugin.js"
       ]
     ]
   }

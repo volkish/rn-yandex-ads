@@ -27,14 +27,13 @@
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
-          <string>app.momsline.yandexads.example</string>
+          <string>rn-yandex-ads-example</string>
+          <string>expo.modules.rn-yandex-ads.example</string>
         </array>
       </dict>
     </array>
     <key>CFBundleVersion</key>
     <string>1</string>
-    <key>GADApplicationIdentifier</key>
-    <string>ca-app-pub-9053710991237653~5695044579</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>NSAppTransportSecurity</key>

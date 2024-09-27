@@ -2,7 +2,6 @@ const { withInfoPlist } = require("expo/config-plugins");
 
 module.exports = function withAdMobPublisherId(config) {
   return withInfoPlist(config, (config) => {
-    config.modResults.GADApplicationIdentifier = process.env.ADMOB_PUBLISHER_ID;
     config.modResults.SKAdNetworkItems = [
       { SKAdNetworkIdentifier: "zq492l623r.skadnetwork" },
       { SKAdNetworkIdentifier: "cstr6suwn9.skadnetwork" },

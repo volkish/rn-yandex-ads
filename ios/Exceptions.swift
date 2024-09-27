@@ -8,26 +8,26 @@
 import Foundation
 import ExpoModulesCore
 
-internal class InitializationRequiredException: Exception {
+internal final class InitializationRequiredException: Exception {
     override var reason: String {
         "Initialization is required before use"
     }
 }
 
-internal class MissingCurrentViewControllerException: Exception {
+internal final class MissingCurrentViewControllerException: Exception {
   override var reason: String {
     "Cannot determine currently presented view controller"
   }
 }
 
-internal class FailedToShowException: GenericException<String?> {
+internal final class FailedToShowException: GenericException<String?> {
     override var reason: String {
         "Failed to show interstitial: '\(param ?? "nil")'"
     }
 }
 
 
-internal class FailedToLoadException: GenericException<String?> {
+internal final  class FailedToLoadException: GenericException<String?> {
     override var reason: String {
         "Failed to load interstitial: '\(param ?? "nil")'"
     }

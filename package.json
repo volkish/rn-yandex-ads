@@ -1,6 +1,6 @@
 {
   "name": "rn-yandex-ads",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Yandex Ads Integration",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -13,7 +13,9 @@
     "prepublishOnly": "expo-module prepublishOnly",
     "expo-module": "expo-module",
     "open:ios": "open -a \"Xcode\" example/ios",
-    "open:android": "open -a \"Android Studio\" example/android"
+    "open:android": "open -a \"Android Studio\" example/android",
+    "android": "expo run:android",
+    "ios": "expo run:ios"
   },
   "keywords": [
     "react-native",
@@ -28,14 +30,18 @@
   "license": "MIT",
   "homepage": "https://github.com/volkish/rn-yandex-ads#readme",
   "devDependencies": {
-    "eslint-plugin-prettier": "^5.0.0",
     "@types/react": "^18.0.25",
-    "expo-module-scripts": "^3.5.1",
-    "expo-modules-core": "^1.12.11"
+    "expo-module-scripts": "^3.5.2",
+    "expo-modules-core": "^1.12.24"
   },
   "peerDependencies": {
     "expo": "*",
     "react": "*",
     "react-native": "*"
+  },
+  "dependencies": {
+    "expo": "~51.0.28",
+    "react": "18.2.0",
+    "react-native": "0.74.5"
   }
 }
